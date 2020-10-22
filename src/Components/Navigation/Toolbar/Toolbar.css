@@ -1,0 +1,75 @@
+.Toolbar {
+    height: 56px;
+    width: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: #1979a9;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: auto 20px;
+    box-sizing: border-box;
+    z-index: 90;
+}
+.Logo{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+nav{
+    flex: 1;
+    box-sizing: border-box;
+}
+.NavigationItems{
+    margin: auto 2px;
+    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+ .NavigationItem{
+     list-style-type: none;
+    box-sizing: border-box;
+}
+.NavigationItem a{
+    padding: 14px 16px;
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+
+.user{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active
+
+{
+    background-color:#0a3b4d;
+  
+}
+.Avatar{
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    .user{
+        display: none;
+    }
+    nav{
+        display: none;
+    }
+    .Logo{
+        margin: 10px;
+    }
+  }

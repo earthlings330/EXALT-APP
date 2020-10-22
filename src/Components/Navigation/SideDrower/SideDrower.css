@@ -1,0 +1,70 @@
+.SideDrower{
+    position: fixed;
+    width: 280px;
+    max-width: 70%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    background-color:  #1979a9;
+    padding: 32px 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+}
+.User{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.Avarat,p{ 
+margin: auto 40px auto 0;
+}
+.Nav{
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.NavigationItems{
+    margin: 0 auto;
+    flex: 1;
+    display: block;
+}
+.NavigationItem{
+    width: 100%;   
+    list-style-type: none;
+}
+.NavigationItem a{
+
+    text-decoration: none;
+    color:white;
+    display: block;
+    padding: 14px 16px;
+}
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active
+
+{
+    color:#0a3b4d;
+  
+}
+@media (min-width:600px){
+    .SideDrower{
+        display: none;
+    }
+}
+
+.Open{
+    transform: translateX(0px);
+    }
+.Close{
+    transform: translateX(-100%);
+    }
+.Logo {
+    height: 11%;
+    margin-bottom: 32px;
+}
+
