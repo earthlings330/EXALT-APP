@@ -21,7 +21,7 @@ const project = React.memo(props => {
 
 
     const [now , setnow ] = useState(50)
-    const progressbar  = <ProgressBar now={now}  srOnly/>;
+    const progressbar  = <ProgressBar variant="success" now={now}  srOnly/>;
 
     return(
     <div>

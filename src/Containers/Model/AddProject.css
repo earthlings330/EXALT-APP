@@ -1,0 +1,25 @@
+.Close{
+background: transparent;
+outline: none;
+border: none;
+color:black;
+}
+.Close:hover{
+    background: transparent;
+    outline: none;
+border: none;
+color:black;
+}
+.create{
+    border:none;
+    background:  #0b5e8870;
+}
+.create:focus{
+    background:  #0b5e8870;
+
+}
+.create:hover{
+    background:  #0b5e8870;
+
+}
+

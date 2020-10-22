@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import {Button} from 'react-bootstrap'
+import {Button,Modal} from 'react-bootstrap'
 import classes from './Projects.css'
 import Task from '../../Components/Task/Task'
 import Project from '../Project/Project'
+import AddProject from '../Model/AddProject'
 
 const projects = React.memo( props =>{
 const [tasks , setTasks ] = useState([
@@ -12,29 +13,33 @@ const [tasks , setTasks ] = useState([
     {name:"task3",time:"10h"}
 
 ])
+const [show, setShow] = useState(false);
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
 
 const alltasks = tasks.map((el,index)=>{
     return <Task name={el.name} time={el.time} key={index} index={index} />
 })
 return(
+
     <div className={classes.Projects}>
         <div>
-         <Button  variant="success"  type="button" size="md" className={classes.Button}>Add new Project</Button>
+         <Button onClick={handleShow}  variant="success"  type="button" size="md" className={classes.Button}>Add new Project</Button>
         </div>
+        {show && <AddProject handleClose={handleClose} show={show} />}
         <div className={classes.ProjectsHeader}>
             <div  className={classes.Project}>
-            <p>Project</p>
+                <p>Project</p>
             </div>
             <div className={classes.Spent}>
-            <p>Spent</p>
+                <p>Spent</p>
             </div>
             <div className={classes.Employee}>
-            <p>Employee</p>
+                <p>Employee</p>
             </div>
-         <div className={classes.Time}> 
-         <p>Time</p>
-         </div>
-      
+            <div className={classes.Time}> 
+                <p>Time</p>
+            </div>
         </div>
         <Project>
             {alltasks}
