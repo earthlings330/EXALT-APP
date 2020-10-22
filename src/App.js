@@ -20,21 +20,26 @@ const app = React.memo(props =>{
   /* SET UP ROUTERS BASED ON AUTH */
   let Routes = (<Switch>
     <Route path='/login' component={Auth}/>
-    <Redirect to='/login'/> 
+    <Redirect from='/' to='/login'/> 
   </Switch>)
 
   if(isAuth){
     Routes = (
     <React.Fragment>
-      <Route path='/Layout' exact component={Layout}/>
-      <Route path='/' component={Layout} />
-      <Redirect to='/' />
+      <Route path='/projects' exact render={()=><div><h1>From Projects</h1></div>}/>
+      <Route path='/time-sheet' exact render={()=><div><h1>From Time Sheet</h1></div>} />
+      <Route path='/reports' exact render ={()=><div><h1>From Reports</h1></div>} />
+      {/* <Route path='/' exact render={()=><div><h1>From Projects</h1></div>} /> */}
+      <Redirect from='/' to='/projects' />
       </React.Fragment>)
   }
 
     return (
       <div className={classes.App}>
-        {Routes}
+        <Layout >
+          {Routes}
+        </Layout>
+
       </div>
     );
 

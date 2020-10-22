@@ -20,7 +20,7 @@ const toolbar = React.memo(props=>{
                <nav>
                    <ul className={classes.NavigationItems}>
                        <li className={classes.NavigationItem}>
-                       <NavLink to='/time-sheet' exact activeClassName={classes.active}>TIME SHEET</NavLink>
+                       <NavLink to='/time-sheet' exact activeClassName={classes.active}>TIMESHEET</NavLink>
                        </li>
                        <li className={classes.NavigationItem}>
                            <NavLink to='/projects' exact activeClassName={classes.active}>PROJECTS</NavLink>

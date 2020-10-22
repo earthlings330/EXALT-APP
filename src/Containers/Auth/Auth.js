@@ -48,7 +48,7 @@ const login = React.memo(props=>{
 
             <Form.Group controlId="formBasicEmail">
               <Form.Control type="email" placeholder="Enter email" required value={email}
-                onChange={event=>{setEmail(event.target.value); console.log(email)}}/>
+                onChange={event=>{setEmail(event.target.value);}}/>
             <Form.Control.Feedback type="invalid">
                 Please Enter your E-mail
             </Form.Control.Feedback>
@@ -56,7 +56,7 @@ const login = React.memo(props=>{
           
             <Form.Group controlId="formBasicPassword">
               <Form.Control type="password" placeholder="Password"  required value={password}
-                onChange={event=>{setPassword(event.target.value); console.log(password)}}/>
+                onChange={event=>{setPassword(event.target.value);}}/>
             <Form.Control.Feedback type="invalid">
                 Please Enter your password
             </Form.Control.Feedback>
@@ -102,12 +102,12 @@ const login = React.memo(props=>{
 
         return(
             <section className={classes.section}>
+                {RedirectUser}
             <div className={classes.Auth}>
                 <div className={classes.headerAuth}>
                     <h3>Login</h3>
                 </div>
                 <div className={classes.bodyAuth}>
-                    {RedirectUser}
                     {BodyContent}
                     {showAlert && LoginAlert}
                 </div>

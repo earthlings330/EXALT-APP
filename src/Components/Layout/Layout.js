@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from 'react'
+import React, {useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Redirect } from 'react-router'
 import Toolbar from '../../Components/Navigation/Toolbar/Toolbar'
 import classes from './Layout.css'
 import SideDrawer from '../Navigation/SideDrower/SideDrower'
@@ -19,28 +18,21 @@ const layout = props => {
     
    }
 
-    /* Redirect the user to Home page if he is already login */
-    const RedirectUser = useMemo(()=>{
-        console.log('RedirectUser')
-        let redirect = null
-        if(!isAuth){
-            redirect = <Redirect to="/login"/>
-        }
-    return redirect
-    },[])
 
+    return(
+        <React.Fragment>
+            {isAuth ?
+                <React.Fragment>
+                    <Toolbar toggle={drawerToggleClickedHandeler}/>
+                    <SideDrawer open={showSideDrawer}  closed={ShowSideDrawerHandeler}/>
+                </React.Fragment>  
+            : null}
 
-    const content = (<div><h1>Yes i'm Auth</h1></div>)
-return(
-    <React.Fragment>
-    {RedirectUser}
-    <Toolbar toggle={drawerToggleClickedHandeler}/>
-    <SideDrawer open={showSideDrawer}  closed={ShowSideDrawerHandeler}/>
-    <main className={classes.Content}>
-    {content}
-    </main>
-    
-    </React.Fragment>
-)
+            <main className={classes.Content}>
+                {props.children}
+            </main>
+        
+        </React.Fragment>
+        )
 }
 export default layout

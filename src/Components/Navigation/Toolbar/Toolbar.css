@@ -36,7 +36,7 @@ nav{
     box-sizing: border-box;
 }
 .NavigationItem a{
-    padding: 14px 16px;
+    padding: 15px 16px;
     display: block;
     text-decoration: none;
     color: white;
@@ -62,7 +62,7 @@ nav{
     margin-right: 5px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 850px) {
     .user{
         display: none;
     }

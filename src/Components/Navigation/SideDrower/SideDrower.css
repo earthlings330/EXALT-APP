@@ -51,7 +51,7 @@ margin: auto 40px auto 0;
     color:#0a3b4d;
   
 }
-@media (min-width:600px){
+@media (min-width:850px){
     .SideDrower{
         display: none;
     }
@@ -61,7 +61,7 @@ margin: auto 40px auto 0;
     transform: translateX(0px);
     }
 .Close{
-    transform: translateX(-100%);
+    transform: translateX(-200%);
     }
 .Logo {
     height: 11%;

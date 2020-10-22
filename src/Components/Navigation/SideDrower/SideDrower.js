@@ -28,7 +28,7 @@ return(
         <div className={classes.Nav}>
             <ul className={classes.NavigationItems}>
                 <li className={classes.NavigationItem}>
-                    <NavLink onClick={props.closed} to='/time-sheet' exact activeClassName={classes.active}>TIME SHEET</NavLink>
+                    <NavLink onClick={props.closed} to='/time-sheet' exact activeClassName={classes.active}>TIMESHEET</NavLink>
                 </li>
                 <li className={classes.NavigationItem}>
                     <NavLink onClick={props.closed} to='/projects' exact activeClassName={classes.active}>PROJECTS</NavLink>
