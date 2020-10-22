@@ -1,0 +1,55 @@
+.Projects{
+    width: 70%;
+    position: relative;
+    top: 15%;
+    margin-left: 19.5%;
+    margin-right: auto;
+
+}
+.Button{
+    width: 15%;
+    margin-bottom: 30px;
+}
+/* .SpendTime{
+    width: 100%;
+    height: 15px;
+    background-color: darkgray;
+}
+.InnerSpent{
+    width: 20%;
+    height: 100%;
+    background-color: green;
+} */
+.ProjectsHeader{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.ProjectsHeader div{
+    flex:1;
+}
+.Project p{
+    padding-left: 30px;
+}
+.Employee p{
+    text-align: center;
+    padding-left: 30px;
+}
+.Time p{
+padding-left: 75px;
+}
+.Spent{
+    padding-left: 15px;
+}
+
+@media screen and (max-width: 850px) {
+    .Projects{
+        margin-left:auto;
+        margin-right: auto;
+        width: 90%;
+    }
+    .Button{
+        width: 20%;
+        margin-bottom: 30px;
+    }
+  }

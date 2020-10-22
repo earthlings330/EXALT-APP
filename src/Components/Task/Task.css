@@ -1,0 +1,26 @@
+.Task{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+}
+.odd{
+    background-color: white;
+}
+.even{
+   background-color: darkgray;
+}
+
+.TaskName{
+    flex:1;
+    padding-left: 30px;
+    box-sizing: border-box;
+}
+.TaskTime{
+    flex:1;
+    text-align: right;
+}
+.TaskTime p{
+    padding-right: 100px;
+}

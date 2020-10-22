@@ -1,12 +1,18 @@
-import React, { useCallback, useEffect }  from 'react';
+import React, { Suspense,useCallback, useEffect }  from 'react';
 import classes from './App.css';
 import {useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route, Switch, withRouter } from 'react-router';
 import * as actionType from './Store/action/index'
 
+
 /*  IMPORT COMPONENT */
 import Auth from './Containers/Auth/Auth'
 import Layout from './Components/Layout/Layout'
+import Spinner from './Components/Spinner/Spinner'
+const Projects = React.lazy(()=>{
+  return import('./Containers/Projects/Projects')
+})
+
 
 
 const app = React.memo(props =>{
@@ -26,7 +32,7 @@ const app = React.memo(props =>{
   if(isAuth){
     Routes = (
     <React.Fragment>
-      <Route path='/projects' exact render={()=><div><h1>From Projects</h1></div>}/>
+      <Route path='/projects' exact render={ (props)=> <Projects {...props} /> } />
       <Route path='/time-sheet' exact render={()=><div><h1>From Time Sheet</h1></div>} />
       <Route path='/reports' exact render ={()=><div><h1>From Reports</h1></div>} />
       {/* <Route path='/' exact render={()=><div><h1>From Projects</h1></div>} /> */}
@@ -37,7 +43,9 @@ const app = React.memo(props =>{
     return (
       <div className={classes.App}>
         <Layout >
+          <Suspense fallback={()=> <Spinner />}>
           {Routes}
+          </Suspense>
         </Layout>
 
       </div>

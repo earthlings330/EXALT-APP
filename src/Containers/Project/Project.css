@@ -1,0 +1,35 @@
+.CardHeader{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.progressbar{
+    flex:1;
+}
+.Employee{
+    flex:1;
+    text-align: center;
+}
+.Time{
+flex:1;
+text-align: center;
+}
+.ProjectName {
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ProjectName p{
+    flex:1;
+}
+
+.toggleButton{
+    background: transparent;
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
+.toggleButton:focus{
+    outline: none;
+}
