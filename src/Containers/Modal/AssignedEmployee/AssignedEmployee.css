@@ -1,0 +1,28 @@
+.Assigned{
+    flex-flow: wrap;
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    margin: 1px;
+    padding:10px;
+    color:black;
+    background-color: lightgray;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+;
+}
+
+.btnRemove{
+    background: transparent;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    color:darkgray;
+}
+.btnRemove:hover{
+    color:lightcoral
+}
+.btnRemove:focus{
+    outline: none;
+    border:none;
+}

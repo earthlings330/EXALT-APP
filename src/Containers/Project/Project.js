@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import classes from './Project.css'
-import {ProgressBar,Card,Accordion,Button,useAccordionToggle} from 'react-bootstrap'
+import {ProgressBar,Card,Accordion,useAccordionToggle} from 'react-bootstrap'
 
 
 
@@ -20,7 +20,7 @@ const project = React.memo(props => {
     }
 
 
-    const [now , setnow ] = useState(50)
+    const [now] = useState(50)
     const progressbar  = <ProgressBar variant="success" now={now}  srOnly/>;
 
     return(

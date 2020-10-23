@@ -1,0 +1,60 @@
+.Close{
+background: transparent;
+outline: none;
+border: none;
+color:black;
+}
+.Close:hover{
+    background: transparent;
+    outline: none;
+    border: none;
+    color:black;
+}
+.create{
+    border:none;
+    background:  #0b5e8870;
+}
+.create:focus{
+    background:  #0b5e8870;
+
+}
+.create:hover{
+    background:  #0b5e8870;
+}
+
+.tags{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.ModalBody{
+    overflow-y: auto;
+}
+.activeItem{
+    width: 100%;
+    height: 35px;
+    background-color:#1979a9;
+    color:white;
+   
+}
+.items{
+    padding: 10px;
+    font-size:16px;
+    line-height: 1.5;
+}
+.CoustomeDropDown{
+    border:1px solid black;
+}
+.InputDataList{
+    padding: 10px;
+    height:40px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    
+}
+.error{
+    border:1px solid tomato;
+    border-radius: 3px;
+}

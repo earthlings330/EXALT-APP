@@ -5,7 +5,7 @@ import classes from './Layout.css'
 import SideDrawer from '../Navigation/SideDrower/SideDrower'
 
 const layout = props => {
-    const isAuth = useSelector(state => state.token !==null)
+    const isAuth = useSelector(state => state.auth.token !==null)
     const [showSideDrawer,setshowSideDrawer] = useState(false)
    
 

@@ -10,9 +10,9 @@ import { NavLink } from 'react-router-dom'
 
 const login = React.memo(props=>{
 
-    const loading  = useSelector(state=>state.loading)
-    const error  = useSelector(state=>state.error)
-    const isAuth  = useSelector(state=>state.token !==null )
+    const loading  = useSelector(state=>state.auth.loading)
+    const error  = useSelector(state=>state.auth.error)
+    const isAuth  = useSelector(state=>state.auth.token !==null )
 
     const dispatch = useDispatch();
     const onFormSubmited = (email,password)=> dispatch(actionType.authInit(email,password))

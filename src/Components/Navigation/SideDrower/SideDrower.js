@@ -7,7 +7,7 @@ import Avatar from 'react-avatar'
 import { useSelector } from 'react-redux'
 const sideDrower  = (props)=>{
 
-    const UserEmail = useSelector(state => state.email)
+    const UserEmail = useSelector(state => state.auth.email)
     let attachClasses = [classes.SideDrower,classes.Close];
     if(props.open){
         attachClasses = [classes.SideDrower,classes.Open];

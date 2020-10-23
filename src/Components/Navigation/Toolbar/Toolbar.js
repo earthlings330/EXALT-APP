@@ -10,7 +10,7 @@ import DrowerToggle from '../DrawerToggle/DrawerToggle'
 
 const toolbar = React.memo(props=>{
   // const isAuth = useSelector(state=>state.token !==null)
-  const UserEmail = useSelector(state => state.email)
+  const UserEmail = useSelector(state => state.auth.email)
         return(
            <header className={classes.Toolbar}>
              <DrowerToggle toggle={props.toggle}/>

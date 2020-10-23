@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import {Button,Modal} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import classes from './Projects.css'
 import Task from '../../Components/Task/Task'
 import Project from '../Project/Project'
-import AddProject from '../Model/AddProject'
+import AddProject from '../Modal/AddProject/AddProject'
 
 const projects = React.memo( props =>{
-const [tasks , setTasks ] = useState([
+const [tasks] = useState([
     {name:"task1",time:"60h"},
     {name:"task2",time:"50h"},
     {name:"task3",time:"10h"},
