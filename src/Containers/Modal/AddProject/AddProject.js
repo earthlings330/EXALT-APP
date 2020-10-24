@@ -7,6 +7,7 @@ import BackDrop from '../../../UI/Backdrop/Backdrop'
 import {useDispatch, useSelector } from 'react-redux';
 import * as actionTye from '../../../Store/action/index'
 import Spinner from '../../../Components/Spinner/Spinner'
+import firebase from '../../../util/firebase'
 
 
 const addProject = React.memo(props => {
@@ -16,10 +17,12 @@ const addProject = React.memo(props => {
     const dispatch = useDispatch();
     const addProjectInit = useCallback( (projectName,time,module,assignedEmployees,userID)=>
     dispatch(actionTye.addProject_Init(projectName,time,module,assignedEmployees,userID)) )
+    const onInitModule = useCallback((modules)=>dispatch(actionTye.initModules(modules)),[])
 
     // useSelector
     const userID = useSelector(state=>state.auth.userID)
     const loading = useSelector(state=>state.addProj.loading)
+    const moduels = useSelector(state=>state.addProj.modules)
 
     // useState
     const [validated, setValidated] = useState(false); // for validation form
@@ -29,33 +32,31 @@ const addProject = React.memo(props => {
     const [module,setModule ] = useState('1')
     const [assignedEmployeevalue,setem] = useState([]) // for assigned employees 
     const [sendData,setSendDate] = useState(false) // to check if create clicked and data sent 
+    const [employees , setEmployees] = useState([])
     
     
+    useEffect(()=>{
+        const taskRef  = firebase.database().ref('ExalApp').child('Employees');
+        taskRef.once('value', (snapshot) => {
+            const employees = snapshot.val();
+           const temp= []
+           for(const key in employees){
+               temp.push(employees[key])
+           }
+            setEmployees(temp)
+            
+      })
+    },[])
 
-    /* FOR TEST */
-    const [employees , setEmployees] = useState([
-        {name:"omar",id:201711564},
-        {name:"Mohammad",id:2017},
-        {name:"Maree",id:2018123},
-        {name:"Ahmad",id:20171231564},
-        {name:"Ali",id:2017123},
-        {name:"omarya",id:201711231564},
-        {name:"Mohammade",id:202317},
-        {name:"Sara",id:20171123564},
-        {name:"Momen",id:201237},
-        {name:"Feras",id:2017123157764},
-        {name:"Mohammad",id:201127},
-        {name:"omar",id:20171155564},
-        {name:"Mohammad",id:2034517},
-        {name:"omar",id:20171761564},
-        {name:"Mohammad",id:201767456},
-        {name:"omar",id:20171156564},
-        {name:"Mohammad",id:205317},
-        {name:"omar",id:201711566564},
-        {name:"Mohammad",id:2016677}
-    ])
-
- 
+    
+    useEffect(()=>{
+        const taskRef  = firebase.database().ref('ExalApp').child('Module');
+        taskRef.on('value', (snapshot) => {
+             const modules = snapshot.val();
+             console.log(modules)
+             onInitModule(modules);
+       })
+    },[onInitModule])
     
     /* SUBMIT   & VALIDATION */
     const submitedHandeler = useCallback((event)=>{
@@ -110,7 +111,18 @@ const addProject = React.memo(props => {
           })),
         [employees]
       );
-        
+    
+      
+    /* Setup Modules */
+    const ListOfMOdules = useMemo(()=>{
+        let Options = []
+        let Modules = {...moduels}
+        for(let key in Modules){
+        let el = <option value={key} key={key}>{Modules[key]}</option>
+        Options.push(el)
+        }
+        return Options
+    },[moduels])
     
     /* Setup the assigned employees tags based on selected option from datalist */ 
     const listof = assignedEmployeevalue.map((el,index)=>{
@@ -147,11 +159,7 @@ const addProject = React.memo(props => {
                 onChange={event => {
                     console.log(event.target.value)
                     setModule(event.target.value)}}>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    {ListOfMOdules}
                 </Form.Control>
                 </Col>
             </Form.Group>

@@ -8,7 +8,7 @@ export const ADD_TASK = 'ADD_TASK'
 export const DELETE_TASK = 'DELETE_TASK'
 export const DONE_TASK = 'DONE_TASK'
 
-
+export const INIT_MODULES = 'INIT_MODULES'
 export const ADD_PROJECT_START = 'ADD_PROJECT_START'
 export const ADD_PROJECT_SUCCESS = 'ADD_PROJECT_SUCCESS'
 export const ADD_PROJECT_FAIL  = 'ADD_PROJECT_FAIL'

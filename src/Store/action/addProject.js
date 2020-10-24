@@ -2,7 +2,13 @@ import * as actionType from './actionType'
 import axios from 'axios'
 
 
+export const initModules = (modules)=>{
+    return{
+        type:actionType.INIT_MODULES,
+        modules:{...modules}
+    }
 
+}
 
 export const addProject_Success = ()=>{
     return{

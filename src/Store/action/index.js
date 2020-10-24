@@ -7,7 +7,8 @@ export {
 
  export{
      addProject_Init,
-     clearError
+     clearError,
+     initModules
  } from './addProject'
 
  export{
