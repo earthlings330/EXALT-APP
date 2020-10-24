@@ -1,0 +1,13 @@
+.Empty{
+    text-align: center;
+    width: 100%;
+    border:1px solid black;
+    border-radius: 8px;
+    background-color: #1979a9;
+    color:white;
+    font-size: 16px;
+    box-shadow: 0 2px 1px  white;
+}
+.Empty p{
+    padding:10px
+}

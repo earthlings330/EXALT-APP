@@ -30,16 +30,16 @@ const project = React.memo(props => {
                 <Card.Header className={classes.CardHeader}>
                 <div className={classes.ProjectName}>
                 <CustomToggle eventKey="0"/>  
-                    <p>Project x</p>
+                    <p>{props.name}</p>
                 </div>
                     <div className={classes.progressbar}>
                         {progressbar}
                     </div>
                     <div className={classes.Employee}>
-                        <p>4</p>
+                        <p>{props.emNumber}</p>
                     </div>
                     <div className={classes.Time}>
-                        <p>130h</p>
+                        <p>{props.time}</p>
                     </div>
                 
                 </Card.Header>

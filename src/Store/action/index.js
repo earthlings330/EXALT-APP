@@ -10,6 +10,11 @@ export {
      clearError
  } from './addProject'
 
+ export{
+    initTasks,
+    initPorjects
+ }from './projects'
+
 
 
 

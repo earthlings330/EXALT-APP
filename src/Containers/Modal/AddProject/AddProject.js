@@ -10,24 +10,27 @@ import Spinner from '../../../Components/Spinner/Spinner'
 
 
 const addProject = React.memo(props => {
-    const {handleClose} = props
-    /* useSelector , useDispatch , useState */
+
+
+    // useDispatch
     const dispatch = useDispatch();
+    const addProjectInit = useCallback( (projectName,time,module,assignedEmployees,userID)=>
+    dispatch(actionTye.addProject_Init(projectName,time,module,assignedEmployees,userID)) )
+
+    // useSelector
     const userID = useSelector(state=>state.auth.userID)
     const loading = useSelector(state=>state.addProj.loading)
-    const error = useSelector(state=>state.addProj.error)
+
+    // useState
     const [validated, setValidated] = useState(false); // for validation form
     const [InputClasses, setInputClasses] = useState([classes.InputDataList]) // for validation DataList input
     const [ProjectName , setProjectName] = useState('')
     const [time,setTime] = useState('')
-    const [module,setModule ] = useState('')
+    const [module,setModule ] = useState('1')
     const [assignedEmployeevalue,setem] = useState([]) // for assigned employees 
-    const [sendData,setSendDate] = useState(false)
-    const addProjectInit = useCallback( (projectName,time,module,assignedEmployees,userID)=>
-    dispatch(actionTye.addProject_Init(projectName,time,module,assignedEmployees,userID)) )
+    const [sendData,setSendDate] = useState(false) // to check if create clicked and data sent 
     
-
-
+    
 
     /* FOR TEST */
     const [employees , setEmployees] = useState([
@@ -114,6 +117,7 @@ const addProject = React.memo(props => {
         return <Assigned name={el.name} key={index} onClose={()=>onRemoveTags(el.name,el.id)}/>
     })
 
+    /* For changing the modal body from form to spinner after click create */
     let ModalBody = (
         <React.Fragment>
         <Form.Group controlId="formBasicEmail" as={Row}>
@@ -140,12 +144,14 @@ const addProject = React.memo(props => {
                 <Form.Label  column sm="4" >Module</Form.Label>
                 <Col sm="8">
                 <Form.Control as="select" size="md" custom placeholder="Select module" value={module} 
-                onChange={event => setModule(event.target.value)}>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                onChange={event => {
+                    console.log(event.target.value)
+                    setModule(event.target.value)}}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </Form.Control>
                 </Col>
             </Form.Group>
@@ -173,10 +179,12 @@ const addProject = React.memo(props => {
     )
     if(loading)
     ModalBody = <Spinner />
+
+    /* Close the modal after sending data for firebase */
     useEffect(()=>{
         console.log("[useEffect]")
         if(!loading && sendData){
-            handleClose();
+            props.handleClose();
             }
         },[loading])
 
@@ -193,7 +201,7 @@ const addProject = React.memo(props => {
                     {ModalBody}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className={classes.Close} variant="dark" onClick={handleClose}>
+                    <Button className={classes.Close} variant="dark" onClick={props.handleClose}>
                         Cancel
                     </Button>
                     <Button className={classes.create} type="submit" variant="secondary">
