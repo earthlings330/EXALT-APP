@@ -23,6 +23,12 @@ export const addProject_Start = ()=>{
     }
 }
 
+export const clearError = ()=>{
+    return{
+        type:actionType.CLEAR_ERROR
+    }
+}
+
 export const addProject_Init = (projectName,time,module,assignedEmployees,userID)=>{
     console.log("send project")
     return dispatch=>{
@@ -36,7 +42,7 @@ export const addProject_Init = (projectName,time,module,assignedEmployees,userID
         axios.post('https://medication-guide-3017f.firebaseio.com/ExalApp/projects/'+userID+'.json',newProject).then(res=>{
             dispatch(addProject_Success())
         }).catch(error=>{
-            dispatch(addProject_Fail(error.response.data.error.message))
+            dispatch(addProject_Fail(error.message))
         })
        
     }

@@ -1,25 +1,31 @@
-import React,{useCallback, useState,useMemo} from 'react';
+import React,{useCallback, useState,useMemo, useEffect} from 'react';
 import {Button,Modal,Form,Row,Col} from 'react-bootstrap'
 import classes from './AddProject.css'
 import Assigned from '../AssignedEmployee/AssignedEmployee'
 import DataListInput from "react-datalist-input";
 import BackDrop from '../../../UI/Backdrop/Backdrop'
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import * as actionTye from '../../../Store/action/index'
+import Spinner from '../../../Components/Spinner/Spinner'
+
 
 const addProject = React.memo(props => {
-
+    const {handleClose} = props
     /* useSelector , useDispatch , useState */
-    const userID = useSelector(state=>state.auth.userID)
     const dispatch = useDispatch();
+    const userID = useSelector(state=>state.auth.userID)
+    const loading = useSelector(state=>state.addProj.loading)
+    const error = useSelector(state=>state.addProj.error)
     const [validated, setValidated] = useState(false); // for validation form
     const [InputClasses, setInputClasses] = useState([classes.InputDataList]) // for validation DataList input
     const [ProjectName , setProjectName] = useState('')
     const [time,setTime] = useState('')
     const [module,setModule ] = useState('')
     const [assignedEmployeevalue,setem] = useState([]) // for assigned employees 
-    const addProjectInit = (projectName,time,module,assignedEmployees,userID)=>
-    dispatch(actionTye.addProject_Init(projectName,time,module,assignedEmployees,userID)) 
+    const [sendData,setSendDate] = useState(false)
+    const addProjectInit = useCallback( (projectName,time,module,assignedEmployees,userID)=>
+    dispatch(actionTye.addProject_Init(projectName,time,module,assignedEmployees,userID)) )
+    
 
 
 
@@ -50,6 +56,8 @@ const addProject = React.memo(props => {
     
     /* SUBMIT   & VALIDATION */
     const submitedHandeler = useCallback((event)=>{
+        console.log("[Submit]")
+        setSendDate(false)
         event.preventDefault();
         const form = event.currentTarget;
         if (form.checkValidity() === false | assignedEmployeevalue.length ===0) {
@@ -62,10 +70,11 @@ const addProject = React.memo(props => {
         }else{
             setInputClasses([classes.InputDataList])
             addProjectInit(ProjectName,time,module,assignedEmployeevalue,userID)
+            setSendDate(true)
             setValidated(false)
-            props.handleClose();
         }
-    },[addProjectInit])
+    },[assignedEmployeevalue])
+
     
     /* When select an option from the datalist */
     const onSelect = useCallback((selectedItem) => {
@@ -98,22 +107,16 @@ const addProject = React.memo(props => {
           })),
         [employees]
       );
+        
     
     /* Setup the assigned employees tags based on selected option from datalist */ 
     const listof = assignedEmployeevalue.map((el,index)=>{
         return <Assigned name={el.name} key={index} onClose={()=>onRemoveTags(el.name,el.id)}/>
     })
-  return (
-    <React.Fragment>
-    <BackDrop show={props.show} />
-    <Modal show={props.show} onHide={props.handleClose}  aria-labelledby="contained-modal-title-vcenter" centered size='md' 
-           backdrop={false}>
-        <Form noValidate validated={validated} onSubmit={submitedHandeler}> 
-        <Modal.Header closeButton>
-            <Modal.Title>New Project</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className={classes.ModalBody}>
-            <Form.Group controlId="formBasicEmail" as={Row}>
+
+    let ModalBody = (
+        <React.Fragment>
+        <Form.Group controlId="formBasicEmail" as={Row}>
                 <Form.Label column sm="4">Project Name</Form.Label>
                 <Col sm="8">
                     <Form.Control type="text" placeholder="Enter Project name" required value={ProjectName}
@@ -123,7 +126,6 @@ const addProject = React.memo(props => {
                     Please Enter Project name
                 </Form.Control.Feedback>
             </Form.Group>
-
             <Form.Group controlId="formBasicPassword"  as={Row}>
                 <Form.Label column sm="4">Total estimated time</Form.Label>
                 <Col sm="8">
@@ -134,7 +136,6 @@ const addProject = React.memo(props => {
                     Please Enter time
                 </Form.Control.Feedback>
             </Form.Group>
-
             <Form.Group controlId="SelectModule" as={Row}>
                 <Form.Label  column sm="4" >Module</Form.Label>
                 <Col sm="8">
@@ -148,7 +149,6 @@ const addProject = React.memo(props => {
                 </Form.Control>
                 </Col>
             </Form.Group>
-
             <Form.Group controlId="assignEmployee" as={Row}>
                 <Form.Label  column sm="4" >Assign employee</Form.Label>
                 <Col sm="8">
@@ -169,20 +169,40 @@ const addProject = React.memo(props => {
             <div className={classes.tags}>
                 {listof}
             </div>
-        
-    
-        </Modal.Body>
-        <Modal.Footer>
-            <Button className={classes.Close} variant="dark" onClick={props.handleClose}>
-                Cancel
-            </Button>
-            <Button className={classes.create} type="submit" variant="secondary">
-                Create
-            </Button>
-        </Modal.Footer>
-        </Form>
-    </Modal>
-    </React.Fragment>
+            </React.Fragment>
+    )
+    if(loading)
+    ModalBody = <Spinner />
+    useEffect(()=>{
+        console.log("[useEffect]")
+        if(!loading && sendData){
+            handleClose();
+            }
+        },[loading])
+
+  return (
+        <React.Fragment> 
+            <BackDrop show={props.show} />
+            <Modal show={props.show} onHide={props.handleClose}  aria-labelledby="contained-modal-title-vcenter" centered size='md' 
+            backdrop={false}>
+                <Form noValidate validated={validated} onSubmit={submitedHandeler}> 
+                <Modal.Header closeButton>
+                    <Modal.Title>New Project</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className={classes.ModalBody}>
+                    {ModalBody}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button className={classes.Close} variant="dark" onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button className={classes.create} type="submit" variant="secondary">
+                        Create
+                    </Button>
+                </Modal.Footer>
+                </Form>
+            </Modal>
+        </React.Fragment>
   );
 });
 

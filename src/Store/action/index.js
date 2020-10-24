@@ -6,7 +6,8 @@ export {
 
 
  export{
-     addProject_Init
+     addProject_Init,
+     clearError
  } from './addProject'
 
 

@@ -3,7 +3,8 @@ import * as actionType from '../action/actionType'
 
 const InitialState = {
     loading:false,
-    error:false
+    error:false,
+    errorMsg:''
         }
 
 const reducer = (state = InitialState, action)=>{
@@ -12,19 +13,29 @@ const reducer = (state = InitialState, action)=>{
             return {
                 ...state,
                 loading:true,
-                error:null
+                error:false,
+                errorMsg:null
             }
         case actionType.ADD_PROJECT_SUCCESS:
             return{
                 ...state,
                 loading:false,
-                error:null
+                error:false,
+                errorMsg:null
             }
         case actionType.ADD_PROJECT_FAIL:
             return{
                 ...state,
                 loading:false,
-                error:action.error
+                error:true,
+                errorMsg:action.error
+            }
+        case actionType.CLEAR_ERROR:
+            return{
+                ...state,
+                loading:false,
+                error:false,
+                errorMsg:null
             }
         default:
             return state
