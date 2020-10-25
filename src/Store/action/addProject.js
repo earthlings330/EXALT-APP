@@ -1,5 +1,26 @@
 import * as actionType from './actionType'
 import axios from 'axios'
+import firebase from '../../util/firebase'
+
+
+
+export const updateProject = (projectName,time,module,assignedEmployees,userID,key)=>{
+    console.log(projectName)
+    return dispatch=>{
+        dispatch(addProject_Start())
+        const newProject ={
+            projectName:projectName,
+            estimatedTime:time,
+            Module:module,
+            assginedEmployees:assignedEmployees
+        }
+
+        const ref = firebase.database().ref('ExalApp').child('projects').child(userID).child(key);
+        ref.update(newProject).then(res=>dispatch(addProject_Success())).catch(error=>
+            dispatch(addProject_Fail("Something went wrong try later!")))
+             }
+            }
+
 
 
 export const initModules = (modules)=>{

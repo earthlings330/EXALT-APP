@@ -49,6 +49,9 @@ nav{
     justify-content: center;
     align-items: center;
 }
+.user p{
+    margin: auto 0;
+}
 
 .NavigationItem a:hover,
 .NavigationItem a:active,

@@ -2,7 +2,9 @@ import * as actionType from '../action/actionType'
 
 const initialState={
     tasks:{},
-    projects:{}
+    projects:{},
+    projectForEdit:{},
+    projectKey:null
 }
 
 
@@ -17,6 +19,12 @@ const reducer = (state = initialState, action)=>{
             return{
                 ...state,
                 projects:action.projects
+            }
+        case actionType.EDIT_PROJECT:
+            return{
+                ...state,
+                projectForEdit:action.project,
+                projectKey:action.projectKey
             }
         default: return state
     }

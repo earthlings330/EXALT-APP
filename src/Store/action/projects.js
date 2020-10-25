@@ -14,3 +14,11 @@ export const initPorjects = (projects) =>{
         projects:{...projects}
     }
 }
+
+export const editProject = (project,key) =>{
+    return{
+        type:actionType.EDIT_PROJECT,
+        project:project,
+        projectKey:key
+    }
+}

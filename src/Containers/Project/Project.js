@@ -14,7 +14,7 @@ const project = React.memo(props => {
         const decoratedOnClick = useAccordionToggle(eventKey,()=> settoggle(!toggle));
         return (
             <button className={classes.toggleButton} type="button" onClick={decoratedOnClick}>
-                {!toggle ? <i className='fas fa-sort-up fa-2x'/> : <i className="fas fa-sort-down fa-2x"></i>}
+                {!toggle ? <i className='fas fa-sort-up fa-2x'/> : <i className={classes.down +" fas fa-sort-down fa-2x down" }></i> }
             </button>
           );
     }
@@ -40,6 +40,7 @@ const project = React.memo(props => {
                     </div>
                     <div className={classes.Time}>
                         <p>{props.time}</p>
+                        <button  type="button" onClick={props.edit}> <i className="fas fa-pen "></i></button>
                     </div>
                 
                 </Card.Header>

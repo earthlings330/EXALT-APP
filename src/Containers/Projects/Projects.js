@@ -6,7 +6,7 @@ import Project from '../Project/Project'
 import AddProject from '../Modal/AddProject/AddProject'
 import ErrorModal from '../Modal/ErrorModal'
 import { useDispatch,useSelector } from 'react-redux'
-import * as actionTye from '../../Store/action/index'
+import * as actionType from '../../Store/action/index'
 import firebase from '../../util/firebase'
 import Empty from '../../UI/Empty/Empty'
 const projects = React.memo( props =>{
@@ -21,31 +21,35 @@ const porjects = useSelector(state=>state.proj.projects)
 
 // useDispatch
 const dispatch = useDispatch();
-const clearError = ()=> dispatch(actionTye.clearError())
-const onInitTasks =useCallback((tasks)=> dispatch(actionTye.initTasks(tasks)),[])
-const onInitPorjects = useCallback((projects)=> dispatch(actionTye.initPorjects(projects)),[])
+const clearError = ()=> dispatch(actionType.clearError())
+const onInitTasks =useCallback((tasks)=> dispatch(actionType.initTasks(tasks)),[])
+const onInitPorjects = useCallback((projects)=> dispatch(actionType.initPorjects(projects)),[])
+const onEditProject = useCallback((project,key) => {
+    setEdit(true)
+    dispatch(actionType.editProject(project,key))},[])
 
 // useState
 const [show, setShow] = useState(false);
+const [edit,setEdit] = useState(false)
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
+const handleEdit = ()=>setEdit(true);
+const handleEditClose = () => setEdit(false)
 
 
 useEffect(()=>{
-    console.log('[INIT Porjects ]')
+  
     const projectsRef= firebase.database().ref('ExalApp').child('projects').child(userID);
     projectsRef.on('value', (snapshot) => {
         const projects = snapshot.val();
-        console.log(projects)
+     
         onInitPorjects(projects);
   })
 },[onInitPorjects])
 useEffect(()=>{
-    console.log('[INIT TASKS ]')
     const taskRef  = firebase.database().ref('ExalApp').child('Tasks');
     taskRef.on('value', (snapshot) => {
          const tasks = snapshot.val();
-         console.log(tasks)
          onInitTasks(tasks);
    })
 },[onInitTasks])
@@ -62,7 +66,6 @@ const onClose =useCallback(()=>{
 },[])
 
 const alltasks = useMemo(()=>{
-    console.log('[MEMO TASK]')
     let tasksElem = []  
     let alltasks = {...tasks}
     let index = 0
@@ -80,7 +83,6 @@ const alltasks = useMemo(()=>{
 },[tasks])
 
 const Projects = useMemo(()=>{
-    console.log('[MEMO Projects]')
     let PorjectElem = []  
     let allPorjects = {...porjects}
        for(let key of  Object.keys(allPorjects)){
@@ -90,12 +92,13 @@ const Projects = useMemo(()=>{
             time={project.estimatedTime}
             emNumber={project.assginedEmployees.length}
             key={key}
+            edit={()=>onEditProject(project,key)}
             >{alltasks}</Project>;
             PorjectElem.push(elm);
           
        }
        return PorjectElem
-},[porjects])
+},[porjects,alltasks])
 
 
 return(
@@ -104,7 +107,7 @@ return(
         <div>
          <Button onClick={handleShow}  variant="success"  type="button" size="md" className={classes.Button}>Add new Project</Button>
         </div>
-        {show && <AddProject handleClose={handleClose} show={show} />}
+        {(show||edit) && <AddProject handleClose={handleClose} show={show} showEdit={edit} openEdit={handleEdit} closeEdit={handleEditClose}/>}
         {error && <ErrorModal show={error} onClose={onClose}>{errorMsg}</ErrorModal>}
         <div className={classes.ProjectsHeader}>
             <div  className={classes.Project}>
@@ -121,12 +124,6 @@ return(
             </div>
         </div>
         {Projects.length > 0 ? Projects : <Empty />}
-        {/* <Project>
-            {alltasks}
-        </Project>
-        <Project>
-            {alltasks}
-        </Project> */}
         
     </div>
 )
@@ -138,6 +135,3 @@ export default projects
 
 
 
-    // <th><div className={classes.SpendTime}>
-    //             <div className={classes.InnerSpent}> </div>
-    //         </div></th>

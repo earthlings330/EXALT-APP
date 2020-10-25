@@ -8,12 +8,14 @@ export {
  export{
      addProject_Init,
      clearError,
-     initModules
+     initModules,
+     updateProject
  } from './addProject'
 
  export{
     initTasks,
-    initPorjects
+    initPorjects,
+    editProject
  }from './projects'
 
 

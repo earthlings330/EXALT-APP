@@ -24,32 +24,67 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    text-align: center;
 }
-.ProjectsHeader div{
+.Project{
     flex:1;
 }
-.Project p{
-    padding-left: 30px;
+.Spent{
+    flex:1;
 }
-.Employee p{
-    text-align: center;
-    padding-left: 30px;
+.Employee{
+    flex:1;
+}
+.Time{
+    flex:1;
 }
 .Time p{
-padding-left: 75px;
+    padding-right: 60px;
 }
-.Spent{
-    padding-left: 15px;
+@media screen and (min-width:1226px)and (max-width:1356px){
+    .Button{
+        width: 17%;
+        margin-bottom: 30px;
+    }
 }
-
-@media screen and (max-width: 850px) {
+@media screen and (min-width:1024px) and (max-width:1226px){
     .Projects{
         margin-left:auto;
         margin-right: auto;
-        width: 90%;
+        width: 70%;
     }
     .Button{
         width: 20%;
         margin-bottom: 30px;
+    }
+}
+
+
+@media screen and (min-width:850px) and (max-width:1024px) {
+    .Projects{
+        margin-left:auto;
+        margin-right: auto;
+        width: 80%;
+    }
+    .Button{
+        width: 25%;
+        margin-bottom: 30px;
+    }
+    .Project p{
+    padding-left: 45px;
+    }
+}
+@media screen and (max-width: 850px) {
+    .Projects{
+        margin-left:auto;
+        margin-right: auto;
+        width: 80%;
+    }
+    .Button{
+        width: 25%;
+        margin-bottom: 30px;
+    }
+    .Project p{
+        padding-left: 10px;
     }
   }

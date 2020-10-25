@@ -17,31 +17,30 @@
     align-items: center;
     margin-bottom: 15px;
 }
-.Avarat,p{ 
-margin: auto 40px auto 0;
+.Avarat,p{
+    text-align: center;
+
 }
 .Nav{
     position: relative;
     box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .NavigationItems{
-    margin: 0 auto;
-    flex: 1;
+    text-align: center;
     display: block;
 }
 .NavigationItem{
+    padding-right: 40px;
     width: 100%;   
     list-style-type: none;
+  
 }
 .NavigationItem a{
-
+    text-align: center;
     text-decoration: none;
     color:white;
     display: block;
-    padding: 14px 16px;
+    padding: 14px 0px;
 }
 .NavigationItem a:hover,
 .NavigationItem a:active,
@@ -64,6 +63,7 @@ margin: auto 40px auto 0;
     transform: translateX(-200%);
     }
 .Logo {
+    text-align: center;
     height: 11%;
     margin-bottom: 32px;
 }

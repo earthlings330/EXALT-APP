@@ -10,6 +10,7 @@ import Spinner from '../../../Components/Spinner/Spinner'
 import firebase from '../../../util/firebase'
 
 
+
 const addProject = React.memo(props => {
 
 
@@ -18,33 +19,68 @@ const addProject = React.memo(props => {
     const addProjectInit = useCallback( (projectName,time,module,assignedEmployees,userID)=>
     dispatch(actionTye.addProject_Init(projectName,time,module,assignedEmployees,userID)) )
     const onInitModule = useCallback((modules)=>dispatch(actionTye.initModules(modules)),[])
+    const onUpdateProject = useCallback((projectName,time,module,assignedEmployees,userID,key)=>
+    dispatch(actionTye.updateProject(projectName,time,module,assignedEmployees,userID,key)))
 
     // useSelector
     const userID = useSelector(state=>state.auth.userID)
     const loading = useSelector(state=>state.addProj.loading)
     const moduels = useSelector(state=>state.addProj.modules)
+    const project = useSelector(state=>state.proj.projectForEdit)
+    const projectKey = useSelector(state=>state.proj.projectKey)
 
     // useState
     const [validated, setValidated] = useState(false); // for validation form
     const [InputClasses, setInputClasses] = useState([classes.InputDataList]) // for validation DataList input
     const [ProjectName , setProjectName] = useState('')
     const [time,setTime] = useState('')
-    const [module,setModule ] = useState('1')
+    const [module,setModule ] = useState('DevOps')
     const [assignedEmployeevalue,setem] = useState([]) // for assigned employees 
     const [sendData,setSendDate] = useState(false) // to check if create clicked and data sent 
     const [employees , setEmployees] = useState([])
+    const [show,setShow] = useState(false)
+    const [setup,setSetup] = useState(false)
+
+
+    useEffect(()=>{
+        if(props.show){
+            setShow(true)
+        }else if(props.showEdit){
+            if(!setup){
+            setProjectName(project.projectName)
+            setTime(project.estimatedTime)
+            setModule(project.Module)
+            setem([...project.assginedEmployees])
+            setShow(true)
+            }
+            setSetup(true)
+        }else{
+            setShow(false)
+            setSetup(false)
+        }
+        return ()=>{}
+    },[project])
+
     
     
     useEffect(()=>{
         const taskRef  = firebase.database().ref('ExalApp').child('Employees');
         taskRef.once('value', (snapshot) => {
             const employees = snapshot.val();
-           const temp= []
+           let temp= []
            for(const key in employees){
                temp.push(employees[key])
            }
+           if(props.showEdit){
+           const assigned = [...project.assginedEmployees]
+           for(let key in assigned){
+               let employee = temp.filter(el => el.id !== assigned[key].id)
+               temp = employee
+               setEmployees(temp)
+           } }else{
             setEmployees(temp)
-            
+           }
+
       })
     },[])
 
@@ -53,14 +89,40 @@ const addProject = React.memo(props => {
         const taskRef  = firebase.database().ref('ExalApp').child('Module');
         taskRef.on('value', (snapshot) => {
              const modules = snapshot.val();
-             console.log(modules)
              onInitModule(modules);
        })
     },[onInitModule])
     
+
+    /* Close the modal after sending data for firebase */
+    useEffect(()=>{
+        if(!loading && sendData){
+            if(props.show){
+                props.handleClose();
+            }else if(props.showEdit){
+                props.closeEdit();
+            }
+            }
+        },[loading])
+
+    
+
+   
+
+
+ 
+    const closeModule = ()=>{
+        if(props.show){
+            props.handleClose();
+        }else if(props.showEdit){
+            props.closeEdit();
+        }
+    }
+
+
     /* SUBMIT   & VALIDATION */
     const submitedHandeler = useCallback((event)=>{
-        console.log("[Submit]")
+        console.log("from",ProjectName)
         setSendDate(false)
         event.preventDefault();
         const form = event.currentTarget;
@@ -73,15 +135,22 @@ const addProject = React.memo(props => {
 
         }else{
             setInputClasses([classes.InputDataList])
+            if(props.show){
             addProjectInit(ProjectName,time,module,assignedEmployeevalue,userID)
+            }
+            else if(props.showEdit){
+            onUpdateProject(ProjectName,time,module,assignedEmployeevalue,userID,projectKey)
+            }
             setSendDate(true)
             setValidated(false)
         }
-    },[assignedEmployeevalue])
+    },[assignedEmployeevalue,ProjectName,time,module,projectKey])
 
-    
+
+
     /* When select an option from the datalist */
     const onSelect = useCallback((selectedItem) => {
+        console.log('before select',employees)
         if(selectedItem!==null){
         const temp = [...assignedEmployeevalue]
         temp.push({name:selectedItem.label,id:selectedItem.key})
@@ -89,7 +158,8 @@ const addProject = React.memo(props => {
         const tempemployees= employees.filter(el=>el.id !== selectedItem.key)
         setEmployees(tempemployees)
         }
-    }, [assignedEmployeevalue]);
+     
+    }, [assignedEmployeevalue,employees]);
 
     /* When delete an tag from assigned employees tags*/
     const onRemoveTags = (name,id)=>{
@@ -98,6 +168,7 @@ const addProject = React.memo(props => {
         const tempemployees= [...employees]
         tempemployees.push({name:name,id:id})
         setEmployees(tempemployees)
+        console.log(tempemployees)
     }
     
     /* Setup an array of objects for datalist  */
@@ -145,7 +216,7 @@ const addProject = React.memo(props => {
             <Form.Group controlId="formBasicPassword"  as={Row}>
                 <Form.Label column sm="4">Total estimated time</Form.Label>
                 <Col sm="8">
-                    <Form.Control type="text" placeholder="Enter time" required value={time}
+                    <Form.Control type="number" placeholder="Enter time" required value={time}
                     onChange={event => setTime(event.target.value)}/>
                 </Col>
                 <Form.Control.Feedback type="invalid">
@@ -177,6 +248,7 @@ const addProject = React.memo(props => {
                     clearInputOnSelect={true}
                     requiredInputLength={2}
                     suppressReselect={false}
+                    
                 />
                 </Col>
             </Form.Group>
@@ -188,32 +260,31 @@ const addProject = React.memo(props => {
     if(loading)
     ModalBody = <Spinner />
 
-    /* Close the modal after sending data for firebase */
-    useEffect(()=>{
-        console.log("[useEffect]")
-        if(!loading && sendData){
+    const Hide = ()=>{
+        if(props.show){
             props.handleClose();
-            }
-        },[loading])
-
+        }else if(props.showEdit){
+            props.closeEdit();
+        }
+    }
   return (
         <React.Fragment> 
-            <BackDrop show={props.show} />
-            <Modal show={props.show} onHide={props.handleClose}  aria-labelledby="contained-modal-title-vcenter" centered size='md' 
+            <BackDrop show={show} />
+            <Modal show={show} onHide={Hide}  aria-labelledby="contained-modal-title-vcenter" centered size='md' 
             backdrop={false}>
                 <Form noValidate validated={validated} onSubmit={submitedHandeler}> 
                 <Modal.Header closeButton>
-                    <Modal.Title>New Project</Modal.Title>
+                    <Modal.Title>{props.show ? "New Project" : "Edit Project"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className={classes.ModalBody}>
                     {ModalBody}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className={classes.Close} variant="dark" onClick={props.handleClose}>
+                    <Button className={classes.Close} variant="dark" onClick={closeModule}>
                         Cancel
                     </Button>
                     <Button className={classes.create} type="submit" variant="secondary">
-                        Create
+                        {props.show ?"Create" : "Save"}
                     </Button>
                 </Modal.Footer>
                 </Form>

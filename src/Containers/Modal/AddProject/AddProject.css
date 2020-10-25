@@ -12,15 +12,15 @@ color:black;
 }
 .create{
     border:none;
-    background:  #0b5e8870;
+    background:  #1979a9;
 }
 .create:focus{
-    background:  #0b5e8870;
-
+    background:  #1979a9;
 }
 .create:hover{
-    background:  #0b5e8870;
+    background:  #1979a9;
 }
+
 
 .tags{
     display: flex;

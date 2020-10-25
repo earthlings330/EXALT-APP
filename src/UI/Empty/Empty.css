@@ -9,5 +9,6 @@
     box-shadow: 0 2px 1px  white;
 }
 .Empty p{
+    margin: auto 0;
     padding:10px
 }

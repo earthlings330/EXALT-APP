@@ -19,6 +19,7 @@ return(
         <div className={classes.Logo}>
         <img src={Logo} alt="Logo"/>
         </div>
+        <center>
         <div className={classes.User}>
         <Avatar  className={classes.Avarat} size="50" facebook-id="invalidfacebookusername"
                 src="http://www.gravatar.com/avatar/a16a38cdfe8b2cbd38e8a56ab93238d3"
@@ -36,8 +37,12 @@ return(
                 <li className={classes.NavigationItem}>
                     <NavLink onClick={props.closed} to='/reports' exact activeClassName={classes.active}>REPORTS</NavLink>
                 </li>
+                <li className={classes.NavigationItem}>
+                    <NavLink onClick={props.closed} to='/employees' exact activeClassName={classes.active}>EMPLOYEES</NavLink>
+                </li>
             </ul>
         </div>
+        </center>
     </div>
     </React.Fragment>
 );

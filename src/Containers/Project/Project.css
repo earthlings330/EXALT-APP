@@ -11,26 +11,69 @@
     flex:1;
     text-align: center;
 }
+.Employee p{
+    margin: auto 0px;
+}
 .Time{
 flex:1;
 text-align: center;
+display: flex;
+align-items: center;
 }
-.ProjectName {
+.Time p{
+    margin: auto 0px;
     flex:1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.ProjectName p{
-    flex:1;
-}
+    text-align: center;
 
-.toggleButton{
+}
+.Time button{
+
+    height: 20px;
     background: transparent;
+    position: relative;
     border:none;
     outline: none;
     cursor: pointer;
 }
+.Time button:hover{
+color:red;
+}
+.ProjectName{
+    width: 25%;
+    display: flex;
+    align-items: center;
+}
+.ProjectName p{
+    margin: auto 0px;
+    text-align: center;
+    width: 60%;
+}
+
+.toggleButton{
+    height: 20px;
+    background: transparent;
+    position: relative;
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
+.toggleButton .down{
+    height: 100%;
+    position: relative;
+    top:-13px;
+    
+}
+
 .toggleButton:focus{
     outline: none;
 }
+
+
+
+@media screen and (max-width: 1246px) {
+    .ProjectName p{
+        text-align:justify;
+        width: 70%;
+    }
+  }
+

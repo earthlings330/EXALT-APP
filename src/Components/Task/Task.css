@@ -14,13 +14,59 @@
 
 .TaskName{
     flex:1;
-    padding-left: 30px;
     box-sizing: border-box;
+}
+.TaskName p{
+    text-align: left;
+    padding-left: 90px;
 }
 .TaskTime{
     flex:1;
-    text-align: right;
 }
 .TaskTime p{
-    padding-right: 100px;
+    text-align: right;
+    padding-right: 130px;
 }
+@media screen and (min-width:1226px)and (max-width:1356px){
+    .TaskName p{
+        text-align: left;
+        padding-left: 80px;
+    }
+    .TaskTime p{
+        text-align: right;
+        padding-right: 120px;
+    }
+}
+@media screen and (min-width:1024px) and (max-width:1226px){
+    .TaskName p{
+        text-align: left;
+        padding-left: 35px;
+    }
+    .TaskTime p{
+        text-align: right;
+        padding-right: 80px;
+    }
+}
+
+
+@media screen and (min-width:850px) and (max-width:1024px) {
+    .TaskName p{
+        text-align: left;
+        padding-left: 40px;
+    }
+    .TaskTime p{
+        text-align: right;
+        padding-right: 80px;
+    }
+}
+@media screen and (max-width: 850px) {
+    .TaskName p{
+        text-align: left;
+        padding-left: 40px;
+    }
+    .TaskTime p{
+        text-align: right;
+        padding-right: 75px;
+    }
+  }
+

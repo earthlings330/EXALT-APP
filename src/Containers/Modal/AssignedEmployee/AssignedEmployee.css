@@ -9,7 +9,10 @@
     background-color: lightgray;
     border: 1px solid darkgray;
     border-radius: 5px;
-;
+
+}
+.Assigned p{
+    margin: auto 0;
 }
 
 .btnRemove{

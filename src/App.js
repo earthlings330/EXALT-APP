@@ -32,6 +32,7 @@ const app = React.memo(props =>{
       <Route path='/projects' exact component={Projects}/>
       <Route path='/time-sheet' exact render={()=><div><h1>From Time Sheet</h1></div>} />
       <Route path='/reports' exact render ={()=><div><h1>From Reports</h1></div>} />
+      <Route path='/employees' exact rende={()=> <div><h1>From emoployees</h1></div>} />
       <Redirect from='/' to='/projects' />
     </React.Fragment>)
   }

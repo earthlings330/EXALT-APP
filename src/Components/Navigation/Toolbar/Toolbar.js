@@ -28,6 +28,9 @@ const toolbar = React.memo(props=>{
                        <li className={classes.NavigationItem}>
                            <NavLink to='/reports' exact activeClassName={classes.active}>REPORTS</NavLink>
                        </li>
+                       <li className={classes.NavigationItem}>
+                           <NavLink to='/employees' exact activeClassName={classes.active}>EMPLOYEES</NavLink>
+                       </li>
                    </ul>
                </nav>
                <div className={classes.user}>
