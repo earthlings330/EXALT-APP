@@ -123,7 +123,7 @@ return(
                 <p>Time</p>
             </div>
         </div>
-        {Projects.length > 0 ? Projects : <Empty />}
+        {Projects.length > 0 ? Projects : <Empty type="proj" />}
         
     </div>
 )

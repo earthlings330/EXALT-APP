@@ -9,6 +9,7 @@ import * as actionType from './Store/action/index'
 import Auth from './Containers/Auth/Auth';
 import Layout from './Components/Layout/Layout';
 import Projects from './Containers/Projects/Projects'
+import Employees from './Containers/Employees/Employess'
 
 
 const app = React.memo(props =>{
@@ -32,7 +33,7 @@ const app = React.memo(props =>{
       <Route path='/projects' exact component={Projects}/>
       <Route path='/time-sheet' exact render={()=><div><h1>From Time Sheet</h1></div>} />
       <Route path='/reports' exact render ={()=><div><h1>From Reports</h1></div>} />
-      <Route path='/employees' exact rende={()=> <div><h1>From emoployees</h1></div>} />
+      <Route path='/employees' exact component={Employees}/>
       <Redirect from='/' to='/projects' />
     </React.Fragment>)
   }

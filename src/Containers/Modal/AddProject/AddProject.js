@@ -171,6 +171,15 @@ const addProject = React.memo(props => {
         console.log(tempemployees)
     }
     
+    const match = (currentInput, item) => {
+        console.log("math")
+        // const 
+        return (
+          item.label.substr(0, currentInput.length).toUpperCase() ===
+          currentInput.toUpperCase()
+        );
+      };
+
     /* Setup an array of objects for datalist  */
     const items = useMemo(
         () =>
@@ -246,8 +255,10 @@ const addProject = React.memo(props => {
                     items={items}
                     onSelect={onSelect}
                     clearInputOnSelect={true}
-                    requiredInputLength={2}
+                    requiredInputLength={1}
                     suppressReselect={false}
+                    debounceTime={1000}
+                    match={(currentInput, item)=>match(currentInput, item)}
                     
                 />
                 </Col>

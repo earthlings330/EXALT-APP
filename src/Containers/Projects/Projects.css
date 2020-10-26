@@ -1,9 +1,8 @@
 .Projects{
     width: 70%;
     position: relative;
-    top: 15%;
-    margin-left: 19.5%;
-    margin-right: auto;
+    margin: 0 auto;
+    padding-left: 4%;
 
 }
 .Button{
@@ -42,6 +41,9 @@
     padding-right: 60px;
 }
 @media screen and (min-width:1226px)and (max-width:1356px){
+    .Projects{
+        padding-left: 0;
+    }
     .Button{
         width: 17%;
         margin-bottom: 30px;
@@ -52,6 +54,7 @@
         margin-left:auto;
         margin-right: auto;
         width: 70%;
+        padding-left: 0;
     }
     .Button{
         width: 20%;
@@ -65,6 +68,7 @@
         margin-left:auto;
         margin-right: auto;
         width: 80%;
+        padding-left: 0;
     }
     .Button{
         width: 25%;
@@ -79,6 +83,7 @@
         margin-left:auto;
         margin-right: auto;
         width: 80%;
+        padding-left: 0;
     }
     .Button{
         width: 25%;

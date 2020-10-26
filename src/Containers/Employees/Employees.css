@@ -1,0 +1,108 @@
+.Container{
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    padding-left: 4%;
+}
+.SwitchSection{
+    position: relative;
+    margin: 1rem auto;
+    width: 70%;
+    padding-left: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.SwitchSection button{ 
+    margin: 0;
+    padding:5px;
+    width: 35%;
+    border: 1px solid white;
+    outline: none;
+    border-radius: 5px;
+}
+.Active{
+    background-color: #1979a9;
+    color:white;
+}
+
+.NewUser{
+    width: 15%;
+    background-color: 	#28a745;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+.NewUser:focus{
+    outline: none;
+}
+.EmployeesHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+.Name,.Email,.Role,.Edit{
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+.Email{
+    justify-content: center;
+
+}
+.Role{
+    justify-content: flex-end;
+}
+.Name p{
+    margin: auto 0;
+    padding-left: 10px;
+}
+
+.Email p{
+    margin:  auto 0;
+    padding-right: 3rem;
+
+}
+.Role p{
+    margin:  auto 0;
+    padding-right: 3rem;
+}
+@media screen and (max-width:1290px){
+    .Role p{
+        margin:  auto 0;
+    padding-right: 2rem;
+    }
+}
+@media screen and (max-width:960px){
+    .Role p{
+        margin:  auto 0;
+    padding-right: 1rem;
+    }
+    .SwitchSection{
+        width: 75%;
+    }
+    .NewUser{
+        width: 25%;
+    }
+}
+@media screen and (max-width:870px){
+    .SwitchSection{
+        position: relative;
+        margin: 0 auto;
+        width: 750px;
+       flex-direction: column;
+    }
+    
+}
+@media screen and (max-width:680px){
+    .Role p{
+        margin:  auto 0;
+    padding-right: 0;
+    }
+}

@@ -50,7 +50,7 @@
     color:#0a3b4d;
   
 }
-@media (min-width:850px){
+@media (min-width:1024px){
     .SideDrower{
         display: none;
     }

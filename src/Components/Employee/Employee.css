@@ -1,0 +1,38 @@
+.Employee{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.EmployeeName p{
+    margin: auto 0;
+    padding-left: 10px;
+}
+.EmployeeEmail p{
+    margin: auto 0;
+    text-align: center;
+
+}
+.EmployeeRole p{
+    margin: auto 0;
+}
+.EmployeeEdit button{
+    margin: auto 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.EmployeeEdit button:hover{
+    color:red;
+}
+.EmployeeEdit button:focus{
+    outline: none;
+}
+.oddEmployee{
+    background-color: white;
+}
+.evenEmployee{
+   background-color: lightgray;
+}

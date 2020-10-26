@@ -1,0 +1,131 @@
+.Container{
+    position: fixed;
+    top: 20vh;
+    left: calc(50% - 15rem);
+    width: 500px;
+    background-color: white;
+    background-clip: padding-box;
+    border:2px solid #1979a9;
+    border-radius: .3rem;
+    z-index: 900;
+    transition: transform 300ms linear , opacity 20ms linear;
+}
+.Header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid darkgray;
+}
+.Header h4,button{
+    margin: auto 0 ;
+}
+.Header h4{
+    line-height: 1.5;
+}
+
+.closeX{
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color:darkgray;
+}
+.closeX:hover{
+    color:black;
+}
+.closeX:focus{
+    outline: none;
+}
+.Body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
+    box-sizing: border-box;
+    padding:20px;
+}
+.Form{
+    width: 100%;
+    box-sizing: border-box;
+}
+.NameSection,.EmailSection,.RoleSection{
+    color: gray;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding:10px;
+}
+label{
+    flex: 1;
+    padding-left: 4px;
+}
+input,select{
+    flex: 2;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid gray;
+    border-radius: .4rem;
+    
+}
+select{
+    padding: 9px;
+}
+.Footer{
+    position: relative;
+    padding: 10px;
+    border-top: 1px solid lightgray;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.Footer button{
+    margin: .25rem;
+}
+.Cancel{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color:black;
+    font-weight: 500;
+    cursor: pointer;
+}
+.Cancel:focus{
+    outline: none;
+}
+.Save{
+    width: 120px;
+    border:none;
+    outline:none;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #1979a9;
+    color:white;
+}
+.Save:focus{
+    outline: none;
+}
+
+.error{
+    border: 1px solid red;
+    border-radius: .4rem;
+}
+
+@media screen and (min-width:850px) and (max-width:1200px){
+    .Container{
+        width: 500px;
+    }
+}
+@media screen and (max-width:850px){
+    .Container{
+        width: 55%;
+        min-width:400px;
+        left: calc(50% - 27%);
+    }
+}
+
+/* rgba(0,0,0,.2); */
+/* */
