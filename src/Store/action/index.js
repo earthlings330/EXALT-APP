@@ -24,7 +24,6 @@ export {
     clearEmployeeError,
     initEmployees,
     updateEmployee
-    
  }from './employees'
 
 
