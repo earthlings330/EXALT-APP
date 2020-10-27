@@ -41,8 +41,11 @@
 .footerAuth{
     display: flex;
     justify-content: space-between;
-
 }
+
+
+
+
 .Spinner{
     position: relative;
     transform: translateX(50);

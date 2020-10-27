@@ -18,6 +18,15 @@ export {
     editProject
  }from './projects'
 
+ export {
+    editEmployee,
+    addEmployee,
+    clearEmployeeError,
+    initEmployees,
+    updateEmployee
+    
+ }from './employees'
+
 
 
 

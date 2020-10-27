@@ -53,7 +53,6 @@ const login = React.memo(props=>{
                 Please Enter your E-mail
             </Form.Control.Feedback>
             </Form.Group>
-          
             <Form.Group controlId="formBasicPassword">
               <Form.Control type="password" placeholder="Password"  required value={password}
                 onChange={event=>{setPassword(event.target.value);}}/>
@@ -63,14 +62,12 @@ const login = React.memo(props=>{
             </Form.Group>
 
             <Button  variant="success"  type="success" size="md" block className={classes.Button}>Login</Button>
-
             <div className={classes.footerAuth}>
-                <Form.Group controlId="formBasicCheckbox" >
-                    <Form.Check type="checkbox" label="Keep me signed in" style={{color:'lightgray'}}/>
-                </Form.Group>
-                <NavLink to='#'> Forget Password ? </NavLink>
+            <Form.Group id="formGridCheckbox" >
+                <Form.Check label="Check me out" type="checkbox"  />
+            </Form.Group>
+            <NavLink to='#'> Forget Password ? </NavLink>
             </div>
-            
         </Form>
     
     /* If user pressed the button */

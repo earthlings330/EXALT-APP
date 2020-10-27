@@ -1,27 +1,39 @@
-import React, { useState , useMemo} from 'react'
+import React, { useState , useMemo, useEffect,useCallback} from 'react'
 import NewUser from '../Modal/NewUser/NewUser'
 import classes  from './Employees.css'
 import Employee from '../../Components/Employee/Employee'
 import Empty from '../../UI/Empty/Empty'
-
+import { useDispatch,useSelector } from 'react-redux'
+import  * as actionType from '../../Store/action/index'
+import ErrorModal from '../Modal/ErrorModal'
+import firebase from '../../util/firebase'
 const employees = React.memo(props=>{
 
+    const dispatch = useDispatch();
+    const error = useSelector(state=>state.emp.error)
+    const errorMsg = useSelector(state=>state.emp.errorMsg)
+    const clearError  = ()=> dispatch(actionType.clearEmployeeError())
+    const onInitEmployees = useCallback((employees)=> dispatch(actionType.initEmployees(employees)),[])
+    const onEditEmployee = useCallback((emp , key)=>dispatch(actionType.editEmployee(emp,key)),[])
     const [Color, setColor] = useState(true)
     const handleColor = () => setColor(true)
     const handleNonColor = ()=> setColor(false)
-    const Employees = [
-        {name:"omar",email:"asd@asd.com",role:"employee"},
-        {name:"omar",email:"asd@asd.com",role:"employee"},
-        {name:"omar",email:"asd@asd.com",role:"employee"},
-        {name:"omar",email:"asd@asd.com",role:"employee"},
-        {name:"omar",email:"asd@asd.com",role:"employee"},
-        {name:"omar",email:"asd@asd.com",role:"employee"},
-        {name:"omar",email:"asd@asd.com",role:"employee"},
-        {name:"omar",email:"asd@asd.com",role:"employee"}]
+    const Employees = useSelector(state=>state.emp.employees)
+
+    // const Employees = []
 
     const [showNew, setShowNew] = useState(false)
+    const [showEdit,setShowEdit] = useState(false)
     const handleShow = ()=> setShowNew(true)
     const handleClose = () => setShowNew(false)
+    const handleShowEdit = ()=> setShowEdit(true)
+    const handleCloseEdit = () => setShowEdit(false)
+
+
+    const handleEdit = (employee , key)=>{
+        handleShowEdit();
+        onEditEmployee(employee,key)
+    }
     const allEmployees = useMemo(()=>{
         let EmployeesArray = []  
         let employees = {...Employees}
@@ -33,15 +45,33 @@ const employees = React.memo(props=>{
                 email={employee.email}
                 role={employee.role}
                 key={index}
-                index={index}/>;
+                index={index}
+                edit={()=>handleEdit(employee,key)}/>;
                 EmployeesArray.push(emp);
                 index+=1
            }
            return EmployeesArray
     },[Employees])
+
+    const onClose =()=>{
+        clearError();
+    }
+
+    useEffect(()=>{
+        const taskRef  = firebase.database().ref('ExalApp').child('Employees');
+        taskRef.on('value', (snapshot) => {
+             const emps = snapshot.val();
+             onInitEmployees(emps);
+       })
+    },[onInitEmployees])
+
+
+    
+    
 return (
 <React.Fragment>
-    <NewUser  show={showNew} onClose={handleClose}/>
+        {(showNew||showEdit) && <NewUser type={showNew ? true : false} show={showNew ? showNew : showEdit } onClose={showNew ? handleClose : handleCloseEdit}/>}
+        {error && <ErrorModal show={error} onClose={onClose}>{errorMsg}</ErrorModal>}
     <div className={classes.SwitchSection}>
             <button onClick={handleColor}  className={Color ? classes.Active : null}>Manage users</button>
             <button onClick={handleNonColor}  className={Color ? null : classes.Active}>Manage working days/hours</button>

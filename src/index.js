@@ -14,6 +14,7 @@ import thunk from 'redux-thunk';
 import authReducer from './Store/reducer/auth'
 import addProjReducer from './Store/reducer/addProject'
 import projectsReducer from './Store/reducer/projects'
+import employeeReducer from './Store/reducer/employees'
 
 
 /* INIT  */
@@ -21,7 +22,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
     auth:authReducer,
     addProj:addProjReducer,
-    proj:projectsReducer
+    proj:projectsReducer,
+    emp:employeeReducer
 })
 const Store = createStore( rootReducer , composeEnhancers ( applyMiddleware (thunk) ) );
 

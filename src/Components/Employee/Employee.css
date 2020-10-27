@@ -5,17 +5,21 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .EmployeeName p{
     margin: auto 0;
     padding-left: 10px;
+    text-align: justify;
 }
 .EmployeeEmail p{
     margin: auto 0;
     text-align: center;
+    text-align: justify;
 
 }
 .EmployeeRole p{
     margin: auto 0;
+    text-align: justify;
 }
 .EmployeeEdit button{
     margin: auto 0;

@@ -68,13 +68,13 @@ const addProject = React.memo(props => {
         taskRef.once('value', (snapshot) => {
             const employees = snapshot.val();
            let temp= []
-           for(const key in employees){
-               temp.push(employees[key])
+           for(let key of  Object.keys(employees)){
+               temp.push({name:employees[key].name,email:employees[key].email,key:key,role:employees[key].role})
            }
            if(props.showEdit){
            const assigned = [...project.assginedEmployees]
            for(let key in assigned){
-               let employee = temp.filter(el => el.id !== assigned[key].id)
+               let employee = temp.filter(el => el.key !== assigned[key].id)
                temp = employee
                setEmployees(temp)
            } }else{
@@ -153,9 +153,9 @@ const addProject = React.memo(props => {
         console.log('before select',employees)
         if(selectedItem!==null){
         const temp = [...assignedEmployeevalue]
-        temp.push({name:selectedItem.label,id:selectedItem.key})
+        temp.push({name:selectedItem.label,id:selectedItem.key,email:selectedItem.email})
         setem(temp)
-        const tempemployees= employees.filter(el=>el.id !== selectedItem.key)
+        const tempemployees= employees.filter(el=>el.key !== selectedItem.key)
         setEmployees(tempemployees)
         }
      
@@ -171,14 +171,7 @@ const addProject = React.memo(props => {
         console.log(tempemployees)
     }
     
-    const match = (currentInput, item) => {
-        console.log("math")
-        // const 
-        return (
-          item.label.substr(0, currentInput.length).toUpperCase() ===
-          currentInput.toUpperCase()
-        );
-      };
+ 
 
     /* Setup an array of objects for datalist  */
     const items = useMemo(
@@ -187,7 +180,8 @@ const addProject = React.memo(props => {
             // required: what to show to the user
             label: oneItem.name,
             // required: key to identify the item within the array
-            key: oneItem.id
+            key: oneItem.key,
+            email:oneItem.email
           })),
         [employees]
       );
@@ -206,7 +200,7 @@ const addProject = React.memo(props => {
     
     /* Setup the assigned employees tags based on selected option from datalist */ 
     const listof = assignedEmployeevalue.map((el,index)=>{
-        return <Assigned name={el.name} key={index} onClose={()=>onRemoveTags(el.name,el.id)}/>
+        return <Assigned name={el.name} key={el.id} onClose={()=>onRemoveTags(el.name,el.id)}/>
     })
 
     /* For changing the modal body from form to spinner after click create */
@@ -258,7 +252,7 @@ const addProject = React.memo(props => {
                     requiredInputLength={1}
                     suppressReselect={false}
                     debounceTime={1000}
-                    match={(currentInput, item)=>match(currentInput, item)}
+               
                     
                 />
                 </Col>
