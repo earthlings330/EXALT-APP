@@ -27,5 +27,16 @@ export {
  }from './employees'
 
 
+ export {
+   addTask,setProjectKey,
+   clearErrorTask,
+   beforeDeleteTask,
+   onDeleteTask,
+   beforeEdit,
+   onEditTask,
+   onUpdataProgress
+ } from './addTask'
+
+
 
 

@@ -4,9 +4,7 @@ export const AUTH_SUCCESS = 'AUTH_SUCCESS'
 export const AUTH_FAIL = 'AUTH_FAIL'
 
 
-export const ADD_TASK = 'ADD_TASK'
-export const DELETE_TASK = 'DELETE_TASK'
-export const DONE_TASK = 'DONE_TASK'
+
 
 export const INIT_MODULES = 'INIT_MODULES'
 export const ADD_PROJECT_START = 'ADD_PROJECT_START'
@@ -14,10 +12,17 @@ export const ADD_PROJECT_SUCCESS = 'ADD_PROJECT_SUCCESS'
 export const ADD_PROJECT_FAIL  = 'ADD_PROJECT_FAIL'
 export const CLEAR_ERROR ='CLEAR_ERROR'
 export const EDIT_PROJECT ='EDIT_PROJECT'
+export const INIT_PROJECTS = 'INIT_PROJECTS'
 
 
 export const INIT_TASKS = 'INIT_TASKS'
-export const INIT_PROJECTS = 'INIT_PROJECTS'
+export const EDIT_TASK = 'EDIT_TASK'
+export const ADD_TASK_START = 'ADD_TASK_START'
+export const ADD_TASK_SUCCESS= 'ADD_TASK_SUCCESS'
+export const ADD_TASK_FAIL= 'ADD_TASK_FAIL'
+export const DELETE_TASK = 'DELETE_TASK'
+export const DONE_TASK = 'DONE_TASK'
+export const SET_PROJECT_KEY = 'SET_PROJECT_KEY'
 
 
 export const EDIT_EMPLOYEE = 'EDIT_EMPLOYEE'

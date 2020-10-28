@@ -1,7 +1,7 @@
 import * as actionType from '../action/actionType'
 
 const initialState={
-    tasks:{},
+    tasks:new Map(),
     projects:{},
     projectForEdit:{},
     projectKey:null

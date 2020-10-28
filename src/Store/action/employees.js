@@ -20,7 +20,7 @@ export const addEmployeeSuccess = ()=>{
 }
 export const addEmployeeFail = error=>{
     return{
-        type:actionType.ADD_PROJECT_FAIL,
+        type:actionType.ADD_EMPLOYEE_FAIL,
         error:error
     }
 }

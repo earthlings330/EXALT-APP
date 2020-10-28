@@ -21,22 +21,24 @@ display: flex;
 align-items: center;
 }
 .Time p{
-    margin: auto 0px;
-    flex:1;
+    margin: auto 4px auto 0px;
+    flex:2;
     text-align: center;
+    padding-left:2rem;
 
 }
 .Time button{
-
-    height: 20px;
-    background: transparent;
+    height: 22px;
     position: relative;
+    background: transparent;
     border:none;
     outline: none;
     cursor: pointer;
 }
-.Time button:hover{
-color:red;
+
+.AddTaskbtn:hover,
+.EditProjectbtn:hover{
+color: white;
 }
 .ProjectName{
     width: 25%;

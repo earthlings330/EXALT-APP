@@ -15,6 +15,7 @@ import authReducer from './Store/reducer/auth'
 import addProjReducer from './Store/reducer/addProject'
 import projectsReducer from './Store/reducer/projects'
 import employeeReducer from './Store/reducer/employees'
+import addTaskReducer  from './Store/reducer/addTask'
 
 
 /* INIT  */
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     auth:authReducer,
     addProj:addProjReducer,
     proj:projectsReducer,
-    emp:employeeReducer
+    emp:employeeReducer,
+    addTask:addTaskReducer
 })
 const Store = createStore( rootReducer , composeEnhancers ( applyMiddleware (thunk) ) );
 

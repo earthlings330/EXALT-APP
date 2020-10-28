@@ -37,7 +37,7 @@ const reducer = (state = intialState , action) =>{
                 error:false,
                 errorMsg:null
             }
-        case actionType.ADD_PROJECT_FAIL:
+        case actionType.ADD_EMPLOYEE_FAIL:
             return{
                 ...state,
                 loading:false,

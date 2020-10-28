@@ -52,11 +52,8 @@
     box-sizing: border-box;
     padding:20px;
 }
-.Form{
-    width: 100%;
-    box-sizing: border-box;
-}
-.NameSection,.EmailSection,.RoleSection{
+
+.ProgressSection{
     color: gray;
     box-sizing: border-box;
     width: 100%;
@@ -70,7 +67,7 @@ label{
     flex: 1;
     padding-left: 4px;
 }
-input,select{
+select{
     flex: 2;
     width: 100%;
     padding: 8px;

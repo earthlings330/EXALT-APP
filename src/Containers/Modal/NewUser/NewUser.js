@@ -25,7 +25,8 @@ const newuser = React.memo(props=>{
         value:'',
         valid:false,
         touched:false,
-        requiered:true
+        requiered:true,
+        error:''
     })
     const [email,setEmail] = useState({
         value:'',
@@ -135,14 +136,14 @@ const newuser = React.memo(props=>{
         touched:true,
         valid:true
         }))
-        console.log(name)
+        setRole(employeeRole)
         }
         setSetup(true)
         }else{
             setSetup(false)
         }
         return ()=>{}
-    },[employee,setEmail,setName,name,email])
+    },[employee])
 
 
    const handleSubmit =useCallback( event =>{
@@ -178,11 +179,15 @@ const newuser = React.memo(props=>{
     }
    
    },[onAddUser,editEmployee,name,email,role])
+
+   
    useEffect(()=>{
     if(!loading && sendData){
         props.onClose();
         }
     },[loading])
+
+
    let ModalBody =  <div className={classes.Body} >
    <div className={classes.NameSection}>
        <label>Name</label>
