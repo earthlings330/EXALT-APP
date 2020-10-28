@@ -81,6 +81,7 @@ const project = React.memo(props => {
                     onRemove={()=>handleDelete(projectKey,key)}
                     onEdit={()=>handleEdit(task,projectKey,key)}
                     onDone={()=>handleDone(task,projectKey,key)}
+                    percent={task.progress}
                     index={index}/>;
                     tasksElem.push(elm);
                     index+=1

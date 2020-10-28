@@ -11,6 +11,7 @@ const doneTask = React.memo(props=>{
     const taskKey = useSelector(state=>state.addTask.taskKey)
     const loading = useSelector(state=>state.addTask.loading)
     const task = useSelector(state=>state.addTask.task)
+    
     const onUpdateTaskProgress = useCallback((projKey,taskKey,parcent)=> disptach(actionType.onUpdataProgress(projKey,taskKey,parcent)),[])
     const [sendReq,setSendReq] = useState(false)
 

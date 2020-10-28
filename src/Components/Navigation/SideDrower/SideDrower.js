@@ -40,6 +40,9 @@ return(
                 <li className={classes.NavigationItem}>
                     <NavLink onClick={props.closed} to='/employees' exact activeClassName={classes.active}>EMPLOYEES</NavLink>
                 </li>
+                <li className={classes.NavigationItem}>
+                    <NavLink onClick={props.closed} to='/logout' exact activeClassName={classes.active}>LOGOUT</NavLink>
+                </li>
             </ul>
         </div>
         </center>

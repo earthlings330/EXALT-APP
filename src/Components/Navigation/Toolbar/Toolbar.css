@@ -5,12 +5,30 @@
     top:0;
     left:0;
     background-color: #1979a9;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
     padding: auto 20px;
     box-sizing: border-box;
     z-index: 90;
+}
+.Container{
+    width: 70%;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+  
+}
+.toggleButton{
+    background: transparent;
+    margin-top: 2px;
+    border:none;
+    outline:none;
+    color:white;
+    display: none;
+
+}
+.toggleButton:focus{
+    outline:none
 }
 .Logo{
     flex: 1;
@@ -67,6 +85,9 @@ nav{
 }
 
 @media screen and (max-width: 1024px) {
+    .Container{
+        width: 100%;
+    }
     .user{
         display: none;
     }
@@ -75,5 +96,8 @@ nav{
     }
     .Logo{
         margin: 10px;
+    }
+    .toggleButton{
+        display: block;
     }
   }

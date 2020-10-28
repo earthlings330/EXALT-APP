@@ -12,6 +12,15 @@
     outline:none;
     transform: scale(1.1);
 }
+.Green{
+    color:green;
+}
+.Orange{
+    color:orange
+}
+.Red{
+    color:red;
+}
 .btnDone:focus,
 .btnRemove:focus,
 .btnEdit:focus{

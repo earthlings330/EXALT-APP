@@ -15,9 +15,7 @@ const employees = React.memo(props=>{
     const clearError  = ()=> dispatch(actionType.clearEmployeeError())
     const onInitEmployees = useCallback((employees)=> dispatch(actionType.initEmployees(employees)),[])
     const onEditEmployee = useCallback((emp , key)=>dispatch(actionType.editEmployee(emp,key)),[])
-    const [Color, setColor] = useState(true)
-    const handleColor = () => setColor(true)
-    const handleNonColor = ()=> setColor(false)
+    const [selectedButton,setSelectedButton] = useState('first')
     const Employees = useSelector(state=>state.emp.employees)
 
     // const Employees = []
@@ -67,14 +65,22 @@ const employees = React.memo(props=>{
 
 
     
-    
+    const handleClick = event=>{
+        setSelectedButton(event.target.id)
+        
+    }
 return (
 <React.Fragment>
         {(showNew||showEdit) && <NewUser type={showNew ? true : false} show={showNew ? showNew : showEdit } onClose={showNew ? handleClose : handleCloseEdit}/>}
         {error && <ErrorModal show={error} onClose={onClose}>{errorMsg}</ErrorModal>}
     <div className={classes.SwitchSection}>
-            <button onClick={handleColor}  className={Color ? classes.Active : null}>Manage users</button>
-            <button onClick={handleNonColor}  className={Color ? null : classes.Active}>Manage working days/hours</button>
+            <button type="button"  id='first' onClick={handleClick}
+            className={selectedButton ==='first' ? classes.Active : null}>Manage users</button>
+
+            <button  type="button" onClick={handleClick}  id='second'
+            className={selectedButton ==='second' ? classes.Active : null}>Manage working days/hours</button>
+
+
         </div>
     <div className={classes.Container}>
         

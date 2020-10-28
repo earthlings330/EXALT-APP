@@ -4,8 +4,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow-x: auto;
 }
-
+.EmployeeName,.EmployeeEmail,.EmployeeRole{
+    flex:1;
+    flex-grow: 1;
+}
 .EmployeeName p{
     margin: auto 0;
     padding-left: 10px;
@@ -13,9 +17,7 @@
 }
 .EmployeeEmail p{
     margin: auto 0;
-    text-align: center;
     text-align: justify;
-
 }
 .EmployeeRole p{
     margin: auto 0;

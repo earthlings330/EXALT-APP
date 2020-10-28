@@ -1,14 +1,11 @@
 .Container{
     position: relative;
-    width: 70%;
-    margin: 0 auto;
-    padding-left: 4%;
+    width: 100%;
 }
 .SwitchSection{
     position: relative;
     margin: 1rem auto;
-    width: 70%;
-    padding-left: 4%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,10 +15,20 @@
     margin: 0;
     padding:5px;
     width: 35%;
-    border: 1px solid white;
+    border:0px;
     outline: none;
-    border-radius: 5px;
+   
 }
+.SwitchSection button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  .SwitchSection button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+
 .Active{
     background-color: #1979a9;
     color:white;
@@ -47,62 +54,43 @@
     align-items: center;
     border-bottom: 1px solid lightgray;
 }
-.Name,.Email,.Role,.Edit{
+.Name,.Email,.Role{
     flex: 1;
     display: flex;
     justify-content: flex-start;
 }
-.Email{
-    justify-content: center;
 
-}
-.Role{
-    justify-content: flex-end;
-}
 .Name p{
     margin: auto 0;
-    padding-left: 10px;
+    text-align: justify;
 }
 
 .Email p{
     margin:  auto 0;
-    padding-right: 3rem;
-
+    text-align: justify;
+    padding-left:0.5rem
 }
+
 .Role p{
     margin:  auto 0;
-    padding-right: 3rem;
+    text-align: justify;
+
 }
-@media screen and (max-width:1290px){
-    .Role p{
-        margin:  auto 0;
-    padding-right: 2rem;
-    }
-}
+
 @media screen and (max-width:960px){
-    .Role p{
-        margin:  auto 0;
-    padding-right: 1rem;
-    }
-    .SwitchSection{
-        width: 75%;
-    }
     .NewUser{
-        width: 25%;
+        width: 20%;
     }
 }
 @media screen and (max-width:870px){
     .SwitchSection{
         position: relative;
         margin: 0 auto;
-        width: 750px;
-       flex-direction: column;
+        width: 100%;
+        flex-direction: column;
+    }
+    .SwitchSection button{
+        width: 50%;
     }
     
-}
-@media screen and (max-width:680px){
-    .Role p{
-        margin:  auto 0;
-    padding-right: 0;
-    }
 }
