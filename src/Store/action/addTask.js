@@ -58,7 +58,7 @@ return dispatch=>{
     const task ={
         name:name,
         estimatedTime:time,
-        progress:0
+        progress:"0"
     }
     axios.post('https://medication-guide-3017f.firebaseio.com/ExalApp/Tasks/'+key+'/.json',task).then(res=>{
         dispatch(addTaskSuccess())

@@ -13,6 +13,7 @@ const task = props=>{
 
 
     useEffect(()=>{
+      
         if(percent==="0"){
             setColors([classes.Red])
         }
